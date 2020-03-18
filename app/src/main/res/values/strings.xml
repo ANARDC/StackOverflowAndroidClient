@@ -2,5 +2,7 @@
     <string name="app_name">Stack Overflow</string>
     <string name="sign_in_button">Sign In</string>
     <string name="sign_up_button">Sign Up</string>
-<!--    <string name=""-->
+    <string name="login_field">Enter login</string>
+    <string name="password_field">Enter password</string>
+    <!--    <string name=""-->
 </resources>
