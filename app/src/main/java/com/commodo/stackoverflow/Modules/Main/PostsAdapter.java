@@ -1,4 +1,4 @@
-package com.commodo.stackoverflow;
+package com.commodo.stackoverflow.Modules.Main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.commodo.stackoverflow.R;
 
 public final class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder>{
 

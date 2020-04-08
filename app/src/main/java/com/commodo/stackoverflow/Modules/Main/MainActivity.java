@@ -1,10 +1,12 @@
-package com.commodo.stackoverflow;
+package com.commodo.stackoverflow.Modules.Main;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.commodo.stackoverflow.R;
 
 public final class MainActivity extends AppCompatActivity {
 
