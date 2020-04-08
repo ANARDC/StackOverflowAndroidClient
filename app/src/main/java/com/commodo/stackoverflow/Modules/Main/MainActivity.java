@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.commodo.stackoverflow.Helpers.URLFactory;
 import com.commodo.stackoverflow.R;
+
+import java.net.URL;
 
 public final class MainActivity extends AppCompatActivity {
 
@@ -17,7 +20,13 @@ public final class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_main);
+        this.makePostsRecyclerView();
 
+        URL urlFactory = URLFactory.posts.get();
+        System.out.println(urlFactory);
+    }
+
+    void makePostsRecyclerView() {
         this.postsRecyclerView = findViewById(R.id.posts);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
