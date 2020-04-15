@@ -1,5 +1,6 @@
 package com.commodo.stackoverflow.Modules.Main;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,24 +20,42 @@ public final class MainActivity extends AppCompatActivity {
   private RecyclerView postsRecyclerView;
   private PostsAdapter postsAdapter;
 
+  class NetworkServiceTask extends AsyncTask<URL, Void, String> {
+
+    @Override
+    protected String doInBackground(URL... urls) {
+      NetworkServiceDelegate networkServiceDelegate = new NetworkService();
+
+      String response = null;
+
+      try {
+        response = networkServiceDelegate.request(urls[0]);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+      return response;
+    }
+
+    @Override
+    protected void onPostExecute(String response) {
+      System.out.println(response);
+    }
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.setContentView(R.layout.activity_main);
     this.makePostsRecyclerView();
 
+
     URL url = URLFactory.posts.get();
-    NetworkServiceDelegate networkServiceDelegate = new NetworkService();
+    this.makeRequestFor(url);
+  }
 
-    String response = null;
-
-    try {
-      response = networkServiceDelegate.request(url);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    System.out.println(response);
+  void makeRequestFor(URL url) {
+    new NetworkServiceTask().execute(url);
   }
 
   void makePostsRecyclerView() {
