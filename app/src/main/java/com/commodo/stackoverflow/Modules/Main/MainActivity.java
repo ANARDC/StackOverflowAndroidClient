@@ -8,33 +8,46 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.commodo.stackoverflow.Helpers.URLFactory;
 import com.commodo.stackoverflow.R;
+import com.commodo.stackoverflow.Services.NetworkService;
+import com.commodo.stackoverflow.Services.NetworkServiceDelegate;
 
+import java.io.IOException;
 import java.net.URL;
 
 public final class MainActivity extends AppCompatActivity {
 
-    private RecyclerView postsRecyclerView;
-    private PostsAdapter postsAdapter;
+  private RecyclerView postsRecyclerView;
+  private PostsAdapter postsAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
-        this.makePostsRecyclerView();
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    this.setContentView(R.layout.activity_main);
+    this.makePostsRecyclerView();
 
-        URL urlFactory = URLFactory.posts.get();
-        System.out.println(urlFactory);
+    URL url = URLFactory.posts.get();
+    NetworkServiceDelegate networkServiceDelegate = new NetworkService();
+
+    String response = null;
+
+    try {
+      response = networkServiceDelegate.request(url);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
 
-    void makePostsRecyclerView() {
-        this.postsRecyclerView = findViewById(R.id.posts);
+    System.out.println(response);
+  }
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        this.postsRecyclerView.setLayoutManager(layoutManager);
+  void makePostsRecyclerView() {
+    this.postsRecyclerView = findViewById(R.id.posts);
 
-        this.postsRecyclerView.setHasFixedSize(true);
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    this.postsRecyclerView.setLayoutManager(layoutManager);
 
-        this.postsAdapter = new PostsAdapter(100);
-        this.postsRecyclerView.setAdapter(this.postsAdapter);
-    }
+    this.postsRecyclerView.setHasFixedSize(true);
+
+    this.postsAdapter = new PostsAdapter(100);
+    this.postsRecyclerView.setAdapter(this.postsAdapter);
+  }
 }
