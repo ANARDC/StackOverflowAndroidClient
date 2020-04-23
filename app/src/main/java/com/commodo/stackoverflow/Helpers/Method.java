@@ -5,10 +5,10 @@ import android.net.Uri;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public enum URLFactory {
+public enum Method {
   posts;
 
-  public URL get() {
+  public URL url() {
     String base_url    = "https://api.stackexchange.com";
     String api_version = "/2.2";
     String method      = "/" + this.toString();

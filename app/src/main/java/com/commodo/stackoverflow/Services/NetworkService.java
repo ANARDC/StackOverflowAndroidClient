@@ -1,14 +1,15 @@
 package com.commodo.stackoverflow.Services;
 
+import com.commodo.stackoverflow.Helpers.Method;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Scanner;
 
-public class NetworkService implements NetworkServiceDelegate {
-  public String request(URL url) throws IOException {
-    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+final public class NetworkService implements NetworkServiceDelegate {
+  public String request(Method method) throws IOException {
+    HttpURLConnection httpURLConnection = (HttpURLConnection) method.url().openConnection();
     try {
       InputStream inputStream = httpURLConnection.getInputStream();
 

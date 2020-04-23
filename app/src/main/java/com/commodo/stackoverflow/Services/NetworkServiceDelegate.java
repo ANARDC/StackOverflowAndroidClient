@@ -1,9 +1,9 @@
 package com.commodo.stackoverflow.Services;
 
+import com.commodo.stackoverflow.Helpers.Method;
+
 import java.io.IOException;
-import java.net.URL;
 
 public interface NetworkServiceDelegate {
-  String request(URL url) throws IOException;
+  String request(Method method) throws IOException;
 }
-

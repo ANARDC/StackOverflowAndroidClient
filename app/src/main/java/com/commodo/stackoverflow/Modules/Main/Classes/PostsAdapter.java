@@ -1,4 +1,4 @@
-package com.commodo.stackoverflow.Modules.Main;
+package com.commodo.stackoverflow.Modules.Main.Classes;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
