@@ -1,23 +1,23 @@
 package com.commodo.stackoverflow.Modules.Main.Classes;
 
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainActivityDelegate;
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainConfiguratorDelegate;
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainInteractorDelegate;
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainPresenterDelegate;
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainRouterDelegate;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainActivityInterface;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainConfiguratorInterface;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainInteractorInterface;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainPresenterInterface;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainRouterInterface;
 import com.commodo.stackoverflow.Services.NetworkServiceTask;
 
-public final class MainConfigurator implements MainConfiguratorDelegate {
-  private MainPresenterDelegate presenter;
+public final class MainConfigurator implements MainConfiguratorInterface {
+  private MainPresenterInterface presenter;
 
-  MainConfigurator(MainActivityDelegate view) {
+  MainConfigurator(MainActivityInterface view) {
     NetworkServiceTask networkServiceTask = new NetworkServiceTask();
-    MainInteractorDelegate interactor     = new MainInteractor(networkServiceTask);
-    MainRouterDelegate router             = new MainRouter();
+    MainInteractorInterface interactor    = new MainInteractor(networkServiceTask);
+    MainRouterInterface router            = new MainRouter();
     this.presenter                        = new MainPresenter(view, interactor, router);
   }
 
-  public void configure(MainActivityDelegate view) {
+  public void configure(MainActivityInterface view) {
     view.set(this.presenter);
   }
 }

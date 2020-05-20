@@ -10,12 +10,12 @@ final public class NetworkServiceTask extends AsyncTask<Method, Void, String> {
 
   @Override
   protected String doInBackground(Method... methods) {
-    NetworkServiceDelegate networkServiceDelegate = new NetworkService();
+    NetworkServiceInterface networkServiceInterface = new NetworkService();
 
     String response = null;
 
     try {
-      response = networkServiceDelegate.request(methods[0]);
+      response = networkServiceInterface.request(methods[0]);
     } catch (IOException e) {
       e.printStackTrace();
     }

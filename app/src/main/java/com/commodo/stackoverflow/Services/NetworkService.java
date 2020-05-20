@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.Scanner;
 
-final public class NetworkService implements NetworkServiceDelegate {
+final public class NetworkService implements NetworkServiceInterface {
   public String request(Method method) throws IOException {
     HttpURLConnection httpURLConnection = (HttpURLConnection) method.url().openConnection();
     try {

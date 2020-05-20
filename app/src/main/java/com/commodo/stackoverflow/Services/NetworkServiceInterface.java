@@ -4,6 +4,6 @@ import com.commodo.stackoverflow.Helpers.Method;
 
 import java.io.IOException;
 
-public interface NetworkServiceDelegate {
+public interface NetworkServiceInterface {
   String request(Method method) throws IOException;
 }

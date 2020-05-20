@@ -6,18 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainActivityDelegate;
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainConfiguratorDelegate;
-import com.commodo.stackoverflow.Modules.Main.Interfaces.MainPresenterDelegate;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainActivityInterface;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainConfiguratorInterface;
+import com.commodo.stackoverflow.Modules.Main.Interfaces.MainPresenterInterface;
 import com.commodo.stackoverflow.R;
 
-public final class MainActivity extends AppCompatActivity implements MainActivityDelegate {
+public final class MainActivity extends AppCompatActivity implements MainActivityInterface {
 
   private RecyclerView postsRecyclerView;
   private PostsAdapter postsAdapter;
 
-  private MainConfiguratorDelegate configurator;
-  MainPresenterDelegate presenter;
+  private MainConfiguratorInterface configurator;
+  MainPresenterInterface presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public final class MainActivity extends AppCompatActivity implements MainActivit
     this.presenter.onCreate();
   }
 
-  public void set(MainPresenterDelegate presenter) {
+  public void set(MainPresenterInterface presenter) {
     this.presenter = presenter;
   }
 
