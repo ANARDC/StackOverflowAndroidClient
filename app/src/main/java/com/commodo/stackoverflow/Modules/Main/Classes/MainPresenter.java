@@ -18,7 +18,6 @@ public final class MainPresenter implements MainPresenterInterface {
 
   public void onCreate() {
     this.view.makeView();
-    this.view.makePostsRecyclerView();
     System.out.println(this.interactor.getPosts());
   }
 }

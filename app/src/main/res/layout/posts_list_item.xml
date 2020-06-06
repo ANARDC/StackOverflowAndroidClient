@@ -25,5 +25,4 @@
         tools:targetApi="jelly_bean"
         style="@style/TextAppearance.AppCompat.Title"
         />
-
 </FrameLayout>

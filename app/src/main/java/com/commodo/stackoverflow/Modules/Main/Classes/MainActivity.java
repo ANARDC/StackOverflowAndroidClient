@@ -2,7 +2,9 @@ package com.commodo.stackoverflow.Modules.Main.Classes;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +13,11 @@ import com.commodo.stackoverflow.Modules.Main.Interfaces.MainConfiguratorInterfa
 import com.commodo.stackoverflow.Modules.Main.Interfaces.MainPresenterInterface;
 import com.commodo.stackoverflow.R;
 
-public final class MainActivity extends AppCompatActivity implements MainActivityInterface {
+public final class MainActivity extends FragmentActivity implements MainActivityInterface {
+  private PostsRecyclerViewFragment postsRecyclerViewFragment;
+
+  private FragmentManager fragmentManager;
+  private FragmentTransaction fragmentTransaction;
 
   private RecyclerView postsRecyclerView;
   private PostsAdapter postsAdapter;
@@ -27,23 +33,16 @@ public final class MainActivity extends AppCompatActivity implements MainActivit
     this.presenter.onCreate();
   }
 
-  public void set(MainPresenterInterface presenter) {
+  public void setPresenter(MainPresenterInterface presenter) {
     this.presenter = presenter;
   }
 
   public void makeView() {
     this.setContentView(R.layout.activity_main);
-  }
-
-  public void makePostsRecyclerView() {
-    this.postsRecyclerView = findViewById(R.id.posts);
-
-    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-    this.postsRecyclerView.setLayoutManager(layoutManager);
-
-    this.postsRecyclerView.setHasFixedSize(true);
-
-    this.postsAdapter = new PostsAdapter(100);
-    this.postsRecyclerView.setAdapter(this.postsAdapter);
+    this.postsRecyclerViewFragment = new PostsRecyclerViewFragment();
+    this.fragmentManager = this.getSupportFragmentManager();
+    this.fragmentTransaction = this.fragmentManager.beginTransaction();
+    this.fragmentTransaction.add(R.id.view, this.postsRecyclerViewFragment);
+    this.fragmentTransaction.commit();
   }
 }

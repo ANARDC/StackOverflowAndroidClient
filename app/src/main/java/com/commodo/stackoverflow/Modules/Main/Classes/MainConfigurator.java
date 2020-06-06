@@ -18,6 +18,6 @@ public final class MainConfigurator implements MainConfiguratorInterface {
   }
 
   public void configure(MainActivityInterface view) {
-    view.set(this.presenter);
+    view.setPresenter(this.presenter);
   }
 }
