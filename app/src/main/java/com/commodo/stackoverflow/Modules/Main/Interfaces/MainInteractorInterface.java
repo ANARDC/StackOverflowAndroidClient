@@ -1,6 +1,8 @@
 package com.commodo.stackoverflow.Modules.Main.Interfaces;
 
+import com.commodo.stackoverflow.Modules.Main.Classes.PostsRecyclerViewFragment;
+
 public interface MainInteractorInterface {
   // TODO: - метод должен возвращать список постов
-  String getPosts();
+  void setPosts(PostsRecyclerViewFragment fragment);
 }

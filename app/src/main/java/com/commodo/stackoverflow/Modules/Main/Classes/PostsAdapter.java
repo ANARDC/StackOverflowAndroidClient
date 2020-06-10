@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.commodo.stackoverflow.Entities.Response;
 import com.commodo.stackoverflow.R;
 
 public final class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder>{
-
-  private static int viewHolderCount;
+  private Response response;
   private int numberOfItems;
 
-  public PostsAdapter(int numberOfItems) {
-    this.numberOfItems = numberOfItems;
-    PostsAdapter.viewHolderCount = 0;
+  public PostsAdapter(Response response) {
+    this.response = response;
+    this.numberOfItems = response.items.size();
   }
 
   @SuppressLint("SetTextI18n")
@@ -33,17 +33,13 @@ public final class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostVi
 
     View view = inflater.inflate(layoutIdForPostItem, parent, false);
 
-    PostViewHolder viewHolder = new PostViewHolder(view);
-    viewHolder.viewHolderIndex.setText("ViewHolder index: " + PostsAdapter.viewHolderCount);
-
-    PostsAdapter.viewHolderCount++;
-
-    return viewHolder;
+    return new PostViewHolder(view);
   }
 
   @Override
   public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-    holder.bind(position);
+    holder.makePostItemNumberView(position);
+    holder.makeViewHolderIndexView(this.response.items.get(position).title);
   }
 
   @Override
@@ -52,19 +48,22 @@ public final class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostVi
   }
 
   final class PostViewHolder extends RecyclerView.ViewHolder {
-
     TextView postItemNumberView;
-    TextView viewHolderIndex;
+    TextView viewHolderIndexView;
 
     public PostViewHolder(@NonNull View itemView) {
       super(itemView);
 
       this.postItemNumberView = itemView.findViewById(R.id.post_item_number);
-      this.viewHolderIndex = itemView.findViewById(R.id.post_view_holder_number);
+      this.viewHolderIndexView = itemView.findViewById(R.id.post_view_holder_number);
     }
 
-    void bind(int postIndex) {
+    void makePostItemNumberView(int postIndex) {
       this.postItemNumberView.setText(String.valueOf(postIndex));
+    }
+
+    void makeViewHolderIndexView(String title) {
+      this.viewHolderIndexView.setText(title);
     }
   }
 }

@@ -26,6 +26,7 @@ public enum Method {
 
     try {
       url = new URL(uri.toString());
+//      url = new URL("https://api.stackexchange.com/2.2/posts?page=1&pagesize=1&order=desc&sort=activity&site=stackoverflow&filter=!7v48hZEO)sgLGmW2-Yu2K0o-DW32003vEm");
     } catch (MalformedURLException error) {
       error.printStackTrace();
     }

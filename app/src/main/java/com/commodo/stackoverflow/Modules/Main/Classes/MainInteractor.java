@@ -11,7 +11,8 @@ public final class MainInteractor implements MainInteractorInterface {
     this.networkServiceTask = networkServiceTask;
   }
 
-  public String getPosts() {
-    return this.networkServiceTask.execute(Method.posts).toString();
+  public void setPosts(PostsRecyclerViewFragment fragment) {
+    this.networkServiceTask.setPostsRecyclerViewFragment(fragment);
+    this.networkServiceTask.execute(Method.posts);
   }
 }

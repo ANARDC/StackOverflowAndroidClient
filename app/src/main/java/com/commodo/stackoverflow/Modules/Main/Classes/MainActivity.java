@@ -13,14 +13,13 @@ import com.commodo.stackoverflow.Modules.Main.Interfaces.MainConfiguratorInterfa
 import com.commodo.stackoverflow.Modules.Main.Interfaces.MainPresenterInterface;
 import com.commodo.stackoverflow.R;
 
+import org.json.JSONException;
+
 public final class MainActivity extends FragmentActivity implements MainActivityInterface {
   private PostsRecyclerViewFragment postsRecyclerViewFragment;
 
   private FragmentManager fragmentManager;
   private FragmentTransaction fragmentTransaction;
-
-  private RecyclerView postsRecyclerView;
-  private PostsAdapter postsAdapter;
 
   private MainConfiguratorInterface configurator;
   MainPresenterInterface presenter;
@@ -30,7 +29,11 @@ public final class MainActivity extends FragmentActivity implements MainActivity
     super.onCreate(savedInstanceState);
     this.configurator = new MainConfigurator(this);
     this.configurator.configure(this);
-    this.presenter.onCreate();
+    try {
+      this.presenter.onCreate();
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
   }
 
   public void setPresenter(MainPresenterInterface presenter) {
@@ -44,5 +47,9 @@ public final class MainActivity extends FragmentActivity implements MainActivity
     this.fragmentTransaction = this.fragmentManager.beginTransaction();
     this.fragmentTransaction.add(R.id.view, this.postsRecyclerViewFragment);
     this.fragmentTransaction.commit();
+  }
+
+  public PostsRecyclerViewFragment getPostsRecyclerViewFragment() {
+    return this.postsRecyclerViewFragment;
   }
 }
